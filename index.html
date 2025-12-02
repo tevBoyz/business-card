@@ -25,7 +25,7 @@
       border: 1px solid #ddd;
     }
     h2 {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: bold;
       margin-bottom: 20px;
       color: #000;
@@ -88,7 +88,7 @@
         <h2 id="person-name"></h2>
         <div class="info" id="person-phone"></div>
         <div class="info" id="person-email"></div>
-        <div class="info"><a target="_blank" href="https://www.spiralytix.com">https://www.spiralytix.com</a></div>
+        <div class="info"><a target="_blank" href="https://www.spiralytix.com">spiralytix.com</a></div>
       </div>
       <img src="SPX.png" alt="Logo" style="width:90px; margin-left:15px; margin-top: 20px;">
     </div>
@@ -97,7 +97,7 @@
   <button class="download-btn" onclick="downloadCard()" style="width:350px; margin-top:20px;">Download Card</button>
 
   <script>
-    const people = { person1: { name: "Mr Omar Bagersh", phone: "+251911200069", email: "ob@spiralytix.com" }, person2: { name: "Mr Ponappa Ajjikuttira", phone: "+251962181425", email: "ap@spiralytix.com" }, person3: { name: "Mr Yodahe Kifle", phone: "+251911222142", email: "yk@spiralytix.com" } };
+    const people = { person1: { name: "Omar Bagersh", phone: "+251911200069", email: "ob@spiralytix.com" }, person2: { name: "Ponappa Ajjikuttira", phone: "+251962181425", email: "ap@spiralytix.com" }, person3: { name: "Yodahe Kifle", phone: "+251911222142", email: "yk@spiralytix.com" } };
 
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id") || "person1";
@@ -106,8 +106,8 @@
     const card = document.getElementById("card");
 
     document.getElementById("person-name").textContent = person.name;
-      document.getElementById("person-phone").innerHTML = `📞 <span onclick=\"copyPhone('${person.phone}')\">${person.phone}</span>`;
-      document.getElementById("person-email").innerHTML = `<a href=\"mailto:${person.email}\">✉️ ${person.email}</a>`;
+      document.getElementById("person-phone").innerHTML = `<span onclick=\"copyPhone('${person.phone}')\">${person.phone}</span>`;
+      document.getElementById("person-email").innerHTML = `<a href=\"mailto:${person.email}\">${person.email}</a>`;
 
     function copyPhone(phone) {
       navigator.clipboard.writeText(phone);
