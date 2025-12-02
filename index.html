@@ -56,14 +56,12 @@
   </style>
 </head>
 <body>
-  <div class="card" id="card"></div>
+  <div class="card" id="card">
+    <img src="logo.png" alt="Logo" style="width:120px; float:right; margin-left:10px; margin-bottom:20px;">
+  </div>
 
   <script>
-    const people = {
-      person1: { name: "Mr Omar Bagersh", phone: "+251911200069", email: "ob@spiralytix.com" },
-      person2: { name: "Mr Ponappa Ajjikuttira", phone: "+251962181425", email: "ap@spiralytix.com" },
-      person3: { name: "Mr Yodahe Kifle", phone: "+251911222142", email: "yk@spiralytix.com" }
-    };
+    const people = { person1: { name: "Mr Omar Bagersh", phone: "+251911200069", email: "ob@spiralytix.com" }, person2: { name: "Mr Ponappa Ajjikuttira", phone: "+251962181425", email: "ap@spiralytix.com" }, person3: { name: "Mr Yodahe Kifle", phone: "+251911222142", email: "yk@spiralytix.com" } };
 
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id") || "person1";
@@ -72,11 +70,16 @@
     const card = document.getElementById("card");
 
     card.innerHTML = `
-      <h2>${person.name}</h2>
-      <div class="info" onclick="copyPhone('${person.phone}')">📞 ${person.phone}</div>
-      <div class="info"><a href="mailto:${person.email}">✉️ ${person.email}</a></div>
-      <div class="info"><a target="_blank" href="https://www.spiralytix.com">https://www.spiralytix.com</a></div>
-      <button class="download-btn" onclick="downloadCard()">Download Card</button>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <h2>${person.name}</h2>
+          <div class="info" onclick="copyPhone('${person.phone}')">📞 ${person.phone}</div>
+          <div class="info"><a href="mailto:${person.email}">✉️ ${person.email}</a></div>
+          <div class="info"><a target="_blank" href="https://www.spiralytix.com">https://www.spiralytix.com</a></div>
+          <button class="download-btn" onclick="downloadCard()">Download Card</button>
+        </div>
+        <img src="SPX.png" alt="Logo" style="width:90px; margin-left:15px; align-self:start; margin-top:20px">
+      </div>
     `;
 
     function copyPhone(phone) {
