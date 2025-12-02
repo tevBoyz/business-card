@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e6e6e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+      width: 350px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #000;
+    }
+    .info {
+      margin: 8px 0;
+      cursor: pointer;
+      font-size: 16px;
+      color: #333;
+    }
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .download-btn {
+      margin-top: 30px;
+      background: #1b4b8b;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card"></div>
+
+  <script>
+    const people = {
+      person1: { name: "Mr Omar Bagersh", phone: "+251911200069", email: "ob@spiralytix.com" },
+      person2: { name: "Mr Ponappa Ajjikuttira", phone: "+251962181425", email: "ap@spiralytix.com" },
+      person3: { name: "Mr Yodahe Kifle", phone: "+251911222142", email: "yk@spiralytix.com" }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id") || "person1";
+    const person = people[id];
+
+    const card = document.getElementById("card");
+
+    card.innerHTML = `
+      <h2>${person.name}</h2>
+      <div class="info" onclick="copyPhone('${person.phone}')">📞 ${person.phone}</div>
+      <div class="info"><a href="mailto:${person.email}">✉️ ${person.email}</a></div>
+      <div class="info"><a target="_blank" href="https://www.spiralytix.com">https://www.spiralytix.com</a></div>
+      <button class="download-btn" onclick="downloadCard()">Download Card</button>
+    `;
+
+    function copyPhone(phone) {
+      navigator.clipboard.writeText(phone);
+      alert("Phone number copied!");
+    }
+
+    function downloadCard() {
+      const text = `Name: ${person.name}\nPhone: ${person.phone}\nEmail: ${person.email}`;
+      const blob = new Blob([text], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `${person.name.replace(/ /g, "_")}_card.txt`;
+      link.click();
+    }
+  </script>
+</body>
+</html>
